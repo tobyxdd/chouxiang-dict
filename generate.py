@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-LETTERS = '典孝急乐麻批蚌盒赢输对退寄创绝谔鼠兔神躺卷润狂图了献忠支爆死歇反共中美日党雅俗佛草逼冲浪汗爹包子习毛偷傻善编恰哈拉摇晶哥粪钓灵软硬抄爬原马唉资本我爷'
+LETTERS = '典孝急乐麻批蚌绷盒赢输对退寄创绝谔鼠兔神躺卷润狂图了献忠支爆死歇反共中美日党雅俗佛草逼冲浪汗爹包子习毛偷傻善编恰哈拉摇晶哥粪钓灵软硬抄爬原马唉资本我爷'
 
 FONT = ImageFont.truetype('三极隶书简体.ttf', 650)
 
@@ -19,6 +19,6 @@ for letter in LETTERS:
     draw.text((500, 410), letter, fill='black', anchor='mm', font=FONT)
 
     image.resize((100, 100), Image.LANCZOS).save(
-        f'small/{i}_{letter}.png')  # for emoji
+        f'small/{i:03d}_{letter}.png')  # for emoji
     image.resize((512, 512), Image.LANCZOS).save(
-        f'large/{i}_{letter}.png')  # for sticker
+        f'large/{i:03d}_{letter}.png')  # for sticker
