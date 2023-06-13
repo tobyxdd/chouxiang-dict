@@ -5,9 +5,12 @@ LETTERS = '典孝急乐麻批蚌盒赢输对退寄创绝谔鼠兔神躺卷润狂
 
 FONT = ImageFont.truetype('三极隶书简体.ttf', 650)
 
-os.makedirs('output', exist_ok=True)
+os.makedirs('small', exist_ok=True)
+os.makedirs('large', exist_ok=True)
 
+i = 0
 for letter in LETTERS:
+    i += 1
     image = Image.new('RGBA', (1000, 1000), (0, 0, 0, 0))
 
     draw = ImageDraw.Draw(image)
@@ -15,4 +18,7 @@ for letter in LETTERS:
     draw.ellipse((80, 80, 920, 920), outline='black', fill='white', width=60)
     draw.text((500, 410), letter, fill='black', anchor='mm', font=FONT)
 
-    image.resize((100, 100), Image.LANCZOS).save(f'output/{letter}.png')
+    image.resize((100, 100), Image.LANCZOS).save(
+        f'small/{i}_{letter}.png')  # for emoji
+    image.resize((512, 512), Image.LANCZOS).save(
+        f'large/{i}_{letter}.png')  # for sticker
