@@ -24,12 +24,15 @@ CANVAS_SIZE = 1000
 def main() -> None:
     i = 0
     font = TTFont(FONT_FILE)
+    # transform fonts, fixing size and upside-down
+    # see: https://github.com/fonttools/fonttools/issues/2388
     unitsPerEm = font['head'].unitsPerEm
     ttf2em = transform.Identity.scale(1/unitsPerEm, 1/unitsPerEm)
     svgPerEm = 700
     xform = transform.Identity.translate(
         (1000-svgPerEm)/2, svgPerEm).scale(svgPerEm, -svgPerEm).transform(ttf2em)
     glyphSet = font.getGlyphSet()
+    
     for letter in LETTERS:
         i += 1
         pen = SVGPathPen(glyphSet)
@@ -41,6 +44,7 @@ def main() -> None:
         pen.closePath()
         path = pen.getCommands()
         
+        # TODO: extract to function
         dwg = svgwrite.Drawing(
             f'{SMALL_SUBDIR}/{i:03d}_{letter}.svg', size=(100, 100))
         dwg.viewbox(0, 0, 1000, 1000)
