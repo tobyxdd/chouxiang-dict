@@ -1,1 +1,3 @@
+fonttools==4.41.1
 Pillow==10.0.0
+svgwrite==1.4.3
