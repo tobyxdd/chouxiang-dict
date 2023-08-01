@@ -34,7 +34,7 @@ jobs:
         with:
           files: |
             ./dist.zip
-          name: Release ${{ github.ref }}
+          name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
           fail_on_unmatched_files: true
