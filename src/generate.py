@@ -8,7 +8,6 @@ from fontTools.misc import transform
 
 from LETTERS import LETTERS
 
-FONT_SIZE = 650
 FONT_FILE = 'assets/三极隶书简体.ttf'
 
 OUTPUT_DIR = 'dist'
@@ -17,8 +16,6 @@ LARGE_SUBDIR = f'{OUTPUT_DIR}/large'
 
 os.makedirs(SMALL_SUBDIR, exist_ok=True)
 os.makedirs(LARGE_SUBDIR, exist_ok=True)
-
-CANVAS_SIZE = 1000
 
 
 def main() -> None:
@@ -32,7 +29,7 @@ def main() -> None:
     xform = transform.Identity.translate(
         (1000-svgPerEm)/2, svgPerEm).scale(svgPerEm, -svgPerEm).transform(ttf2em)
     glyphSet = font.getGlyphSet()
-    
+
     for letter in LETTERS:
         i += 1
         pen = SVGPathPen(glyphSet)
@@ -43,7 +40,7 @@ def main() -> None:
         glyph.draw(tpen)
         pen.closePath()
         path = pen.getCommands()
-        
+
         # TODO: extract to function
         dwg = svgwrite.Drawing(
             f'{SMALL_SUBDIR}/{i:03d}_{letter}.svg', size=(100, 100))
